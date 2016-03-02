@@ -15,10 +15,6 @@ import android.support.v7.app.AppCompatDelegate;
  * On 6.0+, we use a bad way (change system setting) to let night mode work, The best way is wait Google for fix
  */
 public class BaseDayNightModeActivity extends AppCompatActivity {
-    public static final int MODE_NIGHT_AUTO = AppCompatDelegate.MODE_NIGHT_AUTO;
-    public static final int MODE_NIGHT_NO = AppCompatDelegate.MODE_NIGHT_NO;
-    public static final int MODE_NIGHT_YES = AppCompatDelegate.MODE_NIGHT_YES;
-
     private int mCurrentNightMode;
     private Intent mIntent;
 
@@ -41,13 +37,13 @@ public class BaseDayNightModeActivity extends AppCompatActivity {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             switch (mode) {
                 // Bad way, change system setting may affect other app
-                case MODE_NIGHT_AUTO:
+                case DayNightMode.MODE_NIGHT_AUTO:
                     uiManager.setNightMode(UiModeManager.MODE_NIGHT_AUTO);
                     break;
-                case MODE_NIGHT_NO:
+                case DayNightMode.MODE_NIGHT_NO:
                     uiManager.setNightMode(UiModeManager.MODE_NIGHT_NO);
                     break;
-                case MODE_NIGHT_YES:
+                case DayNightMode.MODE_NIGHT_YES:
                     uiManager.setNightMode(UiModeManager.MODE_NIGHT_YES);
                     break;
             }
