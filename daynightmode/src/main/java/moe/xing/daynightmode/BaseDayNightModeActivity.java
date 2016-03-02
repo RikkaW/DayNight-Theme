@@ -3,10 +3,11 @@ package moe.xing.daynightmode;
 import android.app.UiModeManager;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.annotation.StyleRes;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.AppCompatDelegate;
 
@@ -18,9 +19,14 @@ public class BaseDayNightModeActivity extends AppCompatActivity {
     public static final int MODE_NIGHT_NO = AppCompatDelegate.MODE_NIGHT_NO;
     public static final int MODE_NIGHT_YES = AppCompatDelegate.MODE_NIGHT_YES;
 
-    private int mThemeId = 0;
     private int mCurrentNightMode;
     private Intent mIntent;
+
+    @NonNull
+    @Override
+    public AppCompatDelegate getDelegate() {
+        return super.getDelegate();
+    }
 
     public void setNightMode(int mode) {
         if (mode == mCurrentNightMode) {
@@ -104,24 +110,16 @@ public class BaseDayNightModeActivity extends AppCompatActivity {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
             // save support night mode value
             mCurrentNightMode = AppCompatDelegate.getDefaultNightMode();
-
-            if (delegate.applyDayNight() && mThemeId != 0) {
-                // If day night has been applied, we need to re-set the theme for it to fully apply
-                setTheme(mThemeId);
-            }
+            super.onCreate(savedInstanceState);
         } else {
             // save system's night mode value for Marshmallow
             mCurrentNightMode = ((UiModeManager) getSystemService(Context.UI_MODE_SERVICE)).getNightMode();
+
+            Configuration conf = getResources().getConfiguration();
+            int uiMode = conf.uiMode;
+            super.onCreate(savedInstanceState);
+            conf.uiMode = uiMode;
+            getResources().updateConfiguration(conf, null);
         }
-
-        super.onCreate(savedInstanceState);
-    }
-
-    // Copy from AppCompatActivity
-    @Override
-    public void setTheme(@StyleRes final int resid) {
-        super.setTheme(resid);
-        // Keep hold of the theme id so that we can re-set it later if needed
-        mThemeId = resid;
     }
 }
