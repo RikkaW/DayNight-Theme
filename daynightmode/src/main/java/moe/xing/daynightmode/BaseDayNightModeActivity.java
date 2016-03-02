@@ -106,17 +106,19 @@ public class BaseDayNightModeActivity extends AppCompatActivity {
 
         mIntent = getIntent();
 
-        // Use support night mode for pre Marshmallow
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
-            // save support night mode value
+            // just save support night mode value
             mCurrentNightMode = AppCompatDelegate.getDefaultNightMode();
             super.onCreate(savedInstanceState);
         } else {
             // save system's night mode value for Marshmallow
             mCurrentNightMode = ((UiModeManager) getSystemService(Context.UI_MODE_SERVICE)).getNightMode();
 
+            // right not system have changed conf.uiMode, set support night mode to avoid some UI still use light theme
             Configuration conf = getResources().getConfiguration();
             int uiMode = conf.uiMode;
+            AppCompatDelegate.setDefaultNightMode((conf.uiMode & Configuration.UI_MODE_NIGHT_YES) > 0 ?
+                    AppCompatDelegate.MODE_NIGHT_YES : AppCompatDelegate.MODE_NIGHT_NO);
             super.onCreate(savedInstanceState);
             conf.uiMode = uiMode;
             getResources().updateConfiguration(conf, null);
