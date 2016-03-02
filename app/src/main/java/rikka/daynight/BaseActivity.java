@@ -21,6 +21,7 @@ public class BaseActivity extends AppCompatActivity {
 
     private int mThemeId = 0;
     private int mCurrentNightMode;
+    private Intent mIntent;
 
     public void setNightMode(int mode) {
         if (mode == mCurrentNightMode) {
@@ -57,7 +58,10 @@ public class BaseActivity extends AppCompatActivity {
     }
 
     protected Intent getNightModeChangedRestartActivityIntent() {
-        return new Intent(this, this.getClass());
+        if (mIntent.getAction() != null && mIntent.getAction().equals(Intent.ACTION_MAIN)) {
+            return new Intent(this, this.getClass());
+        }
+        return mIntent;
     }
 
     protected int getNightModeChangedEnterAnim() {
@@ -69,7 +73,6 @@ public class BaseActivity extends AppCompatActivity {
     }
 
     private void fakeRecreate() {
-        /*Intent intent = new Intent(this, this.getClass());*/
         startActivity(getNightModeChangedRestartActivityIntent());
         finish();
 
@@ -95,6 +98,8 @@ public class BaseActivity extends AppCompatActivity {
         final AppCompatDelegate delegate = getDelegate();
         delegate.installViewFactory();
         delegate.onCreate(savedInstanceState);
+
+        mIntent = getIntent();
 
         // Use support night mode for pre Marshmallow
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
