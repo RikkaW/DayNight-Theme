@@ -9,8 +9,9 @@ and system's default value is `MODE_NIGHT_NO`.
 So we can set system's night mode for Marshmallow and use support library for pre-Marshmallow.
 
 ###Usage:
-Do like my [`BaseActivity`](https://github.com/RikkaW/DayNight-Theme/blob/master/app/src/main/java/rikka/daynight/BaseActivity.java) in your `BaseActivity`<br/>
-Use `BaseActivity.setNightMode()` to change night mode runtime<br/>
+If you are using `AppCompatActivity`, use `BaseDayNightModeActivity` as `AppCompatActivity`
+If not, see [`BaseDayNightModeActivity`](https://github.com/RikkaW/DayNight-Theme/blob/master/daynightmode/src/main/java/moe/xing/daynightmode/BaseDayNightModeActivity.java)
+Use `BaseDayNightModeActivity.setNightMode()` to change night mode runtime<br/>
 Set night mode in [`Application`](https://github.com/RikkaW/DayNight-Theme/blob/master/app/src/main/java/rikka/daynight/MyApplication.java) class to set default value
 
 ###Note:
