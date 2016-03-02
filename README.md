@@ -16,8 +16,9 @@ Add the dependency<br/>
 
 Use `BaseDayNightModeActivity.setNightMode()` to change night mode runtime<br/>
 Use `DayNightMode.setDefaultNightMode` in `application` class to set default night mode<br/>
+
 If you are using `AppCompatActivity`, use `BaseDayNightModeActivity` as `AppCompatActivity`<br/>
 If not, see [`BaseDayNightModeActivity`](https://github.com/RikkaW/DayNight-Theme/blob/master/daynightmode/src/main/java/moe/xing/daynightmode/BaseDayNightModeActivity.java)<br/>
 
 ###Note:
-On Marshmallow, it is atemporary way, any app which contains `-night` resource will be affected.
+On Marshmallow, it is a temporary way, any app which contains `-night` resource will be affected.
