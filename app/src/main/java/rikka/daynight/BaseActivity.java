@@ -56,12 +56,25 @@ public class BaseActivity extends AppCompatActivity {
         }
     }
 
+    protected Intent getNightModeChangedRestartActivityIntent() {
+        return new Intent(this, this.getClass());
+    }
+
+    protected int getNightModeChangedEnterAnim() {
+        return R.anim.fade_in;
+    }
+
+    protected int getNightModeChangedExitAnim() {
+        return R.anim.fade_out;
+    }
+
     private void fakeRecreate() {
-        Intent intent = new Intent(this, this.getClass());
-        startActivity(intent);
+        /*Intent intent = new Intent(this, this.getClass());*/
+        startActivity(getNightModeChangedRestartActivityIntent());
         finish();
 
-        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+        overridePendingTransition(getNightModeChangedEnterAnim(),
+                getNightModeChangedExitAnim());
     }
 
     @Override
