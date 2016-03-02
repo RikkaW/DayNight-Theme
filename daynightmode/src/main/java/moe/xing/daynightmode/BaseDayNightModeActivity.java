@@ -1,4 +1,4 @@
-package rikka.daynight;
+package moe.xing.daynightmode;
 
 import android.app.UiModeManager;
 import android.content.Context;
@@ -13,8 +13,7 @@ import android.support.v7.app.AppCompatDelegate;
 /**
  * On 6.0+, we use a bad way (change system setting) to let night mode work, The best way is wait Google for fix
  */
-
-public class BaseActivity extends AppCompatActivity {
+public class BaseDayNightModeActivity extends AppCompatActivity {
     public static final int MODE_NIGHT_AUTO = AppCompatDelegate.MODE_NIGHT_AUTO;
     public static final int MODE_NIGHT_NO = AppCompatDelegate.MODE_NIGHT_NO;
     public static final int MODE_NIGHT_YES = AppCompatDelegate.MODE_NIGHT_YES;
