@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/DayNight.iml" filepath="$PROJECT_DIR$/DayNight.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/daynightmode/daynightmode.iml" filepath="$PROJECT_DIR$/daynightmode/daynightmode.iml" />
     </modules>
   </component>
 </project>
