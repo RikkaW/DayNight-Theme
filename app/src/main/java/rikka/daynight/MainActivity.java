@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import moe.xing.daynightmode.BaseDayNightModeActivity;
+import moe.xing.daynightmode.DayNightMode;
 
 public class MainActivity extends BaseDayNightModeActivity {
     @Override
@@ -39,21 +40,21 @@ public class MainActivity extends BaseDayNightModeActivity {
         findViewById(R.id.button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setNightMode(MODE_NIGHT_AUTO);
+                setNightMode(DayNightMode.MODE_NIGHT_AUTO);
             }
         });
 
         findViewById(R.id.button2).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setNightMode(MODE_NIGHT_NO);
+                setNightMode(DayNightMode.MODE_NIGHT_NO);
             }
         });
 
         findViewById(R.id.button3).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setNightMode(MODE_NIGHT_YES);
+                setNightMode(DayNightMode.MODE_NIGHT_YES);
             }
         });
 

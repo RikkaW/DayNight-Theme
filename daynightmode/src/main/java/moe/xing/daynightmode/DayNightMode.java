@@ -14,9 +14,9 @@ public class DayNightMode {
     public static final int MODE_NIGHT_NO = AppCompatDelegate.MODE_NIGHT_NO;
     public static final int MODE_NIGHT_YES = AppCompatDelegate.MODE_NIGHT_YES;
 
-    static public void setDefaultNightMode(ContextWrapper contextWrapper, int mode) {
+    static public void setDefaultNightMode(Context context, int mode) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            ((UiModeManager) contextWrapper.getSystemService(Context.UI_MODE_SERVICE))
+            ((UiModeManager) context.getSystemService(Context.UI_MODE_SERVICE))
                     .setNightMode(mode);
         } else {
             AppCompatDelegate.setDefaultNightMode(
