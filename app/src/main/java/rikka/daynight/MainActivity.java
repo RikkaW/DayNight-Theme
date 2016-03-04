@@ -60,6 +60,7 @@ public class MainActivity extends BaseDayNightModeActivity {
             @Override
             public void onClick(View v) {
                 setNightMode(DayNightMode.MODE_NIGHT_FOLLOW_SYSTEM);
+                resetText();
             }
         });
 

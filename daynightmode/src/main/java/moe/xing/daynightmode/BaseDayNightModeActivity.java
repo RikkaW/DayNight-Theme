@@ -133,7 +133,6 @@ public class BaseDayNightModeActivity extends AppCompatActivity {
         } else {
             mCurrentNightMode = AppCompatDelegate.getDefaultNightMode();
             super.onCreate(savedInstanceState);
-
             mCheckResourcesConf = false;
         }
     }
