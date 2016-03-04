@@ -12,7 +12,7 @@ So we can set system's night mode for Marshmallow and use support library for pr
 Add it in your root build.gradle at the end of repositories:<br/>
 `maven { url "https://jitpack.io" }`<br/>
 Add the dependency<br/>
-`compile 'com.github.RikkaW:DayNight-Theme:v1.0.3'`
+`compile 'com.github.RikkaW:DayNight-Theme:v1.0.4'`
 
 Use `BaseDayNightModeActivity.setNightMode()` to change night mode runtime<br/>
 Use `DayNightMode.setDefaultNightMode` in `application` class to set default night mode<br/>
