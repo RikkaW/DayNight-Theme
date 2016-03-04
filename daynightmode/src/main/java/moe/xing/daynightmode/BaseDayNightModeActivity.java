@@ -29,6 +29,10 @@ public class BaseDayNightModeActivity extends AppCompatActivity {
     }
 
     private void checkResourcesConf(Resources res) {
+        if (res == null) {
+            return;
+        }
+
         Configuration conf = res.getConfiguration();
         int uiMode = conf.uiMode;
         uiMode &= ~Configuration.UI_MODE_NIGHT_MASK;
@@ -118,7 +122,6 @@ public class BaseDayNightModeActivity extends AppCompatActivity {
         }
     }
 
-    // Copy from AppCompatActivity
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         final AppCompatDelegate delegate = getDelegate();
@@ -132,8 +135,12 @@ public class BaseDayNightModeActivity extends AppCompatActivity {
             super.onCreate(savedInstanceState);
         } else {
             mCurrentNightMode = AppCompatDelegate.getDefaultNightMode();
+
+            if (AppCompatDelegate.getDefaultNightMode() == DayNightMode.MODE_NIGHT_AUTO) {
+                getDelegate().setLocalNightMode(isNight() ? AppCompatDelegate.MODE_NIGHT_YES : AppCompatDelegate.MODE_NIGHT_NO);
+            }
             super.onCreate(savedInstanceState);
-            mCheckResourcesConf = false;
+            mCheckResourcesConf = true;
         }
     }
 }

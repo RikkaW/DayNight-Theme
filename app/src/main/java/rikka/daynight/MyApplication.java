@@ -17,8 +17,8 @@ public class MyApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-
-        DayNightMode.setDefaultNightMode(DayNightMode.MODE_NIGHT_AUTO);
-        DayNightMode.setSystemNightMode(this, DayNightMode.MODE_NIGHT_NO);
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_AUTO);
+        //DayNightMode.setDefaultNightMode(DayNightMode.MODE_NIGHT_YES);
+        //DayNightMode.setSystemNightMode(this, DayNightMode.MODE_NIGHT_NO);
     }
 }
