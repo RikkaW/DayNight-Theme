@@ -9,7 +9,7 @@ Add it in your root build.gradle at the end of repositories:<br/>
 Add the dependency<br/>
 `compile 'com.github.RikkaW:DayNight-Theme:v1.0.5'`
 
-Use `BaseDayNightModeActivity.setNightMode()` to change night mode runtime<br/>
+Use `BaseDayNightModeActivity.setNightMode()` to change night mode runtime (it will recreate activity)<br/>
 Use `DayNightMode.setDefaultNightMode` in `application` class to set default night mode<br/>
 
 If you are using `AppCompatActivity`, use `BaseDayNightModeActivity` as `AppCompatActivity`<br/>
