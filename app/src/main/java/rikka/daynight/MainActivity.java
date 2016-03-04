@@ -3,18 +3,24 @@ package rikka.daynight;
 import android.app.ActivityOptions;
 import android.app.UiModeManager;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
+import android.support.v7.app.AppCompatDelegate;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import moe.xing.daynightmode.BaseDayNightModeActivity;
 import moe.xing.daynightmode.DayNightMode;
 
 public class MainActivity extends BaseDayNightModeActivity {
+    TextView mTextView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,24 +29,14 @@ public class MainActivity extends BaseDayNightModeActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        TextView textView = (TextView) findViewById(R.id.textView);
-
-        UiModeManager uiManager = (UiModeManager) getSystemService(Context.UI_MODE_SERVICE);
-        textView.setText(String.format("System night mode (only take effect on 6.0+): %d\n\n%s %d\n%s %d\n%s %d",
-                uiManager.getNightMode(),
-                "MODE_NIGHT_AUTO", Configuration.UI_MODE_NIGHT_UNDEFINED >> 4,
-                "MODE_NIGHT_NO", Configuration.UI_MODE_NIGHT_NO >> 4,
-                "MODE_NIGHT_YES", Configuration.UI_MODE_NIGHT_YES >> 4
-        ));
-
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
-            textView.setVisibility(View.GONE);
-        }
+        mTextView = (TextView) findViewById(R.id.textView);
+        resetText();
 
         findViewById(R.id.button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 setNightMode(DayNightMode.MODE_NIGHT_AUTO);
+                resetText();
             }
         });
 
@@ -48,6 +44,7 @@ public class MainActivity extends BaseDayNightModeActivity {
             @Override
             public void onClick(View v) {
                 setNightMode(DayNightMode.MODE_NIGHT_NO);
+                resetText();
             }
         });
 
@@ -55,6 +52,14 @@ public class MainActivity extends BaseDayNightModeActivity {
             @Override
             public void onClick(View v) {
                 setNightMode(DayNightMode.MODE_NIGHT_YES);
+                resetText();
+            }
+        });
+
+        findViewById(R.id.button6).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setNightMode(DayNightMode.MODE_NIGHT_FOLLOW_SYSTEM);
             }
         });
 
@@ -72,6 +77,58 @@ public class MainActivity extends BaseDayNightModeActivity {
                 }
             }
         });
+
+        findViewById(R.id.button5).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new AlertDialog.Builder(MainActivity.this, R.style.AppTheme_Dialog_Alert)
+                        .setTitle("Title")
+                        .setMessage("Message")
+                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+
+                            }
+                        })
+                        .show();
+            }
+        });
+
+        findViewById(R.id.button7).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DayNightMode.setSystemNightMode(MainActivity.this, DayNightMode.MODE_NIGHT_AUTO);
+                resetText();
+            }
+        });
+
+        findViewById(R.id.button8).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DayNightMode.setSystemNightMode(MainActivity.this, DayNightMode.MODE_NIGHT_NO);
+                resetText();
+            }
+        });
+
+        findViewById(R.id.button9).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DayNightMode.setSystemNightMode(MainActivity.this, DayNightMode.MODE_NIGHT_YES);
+                resetText();
+            }
+        });
+    }
+
+    private void resetText() {
+        UiModeManager uiManager = (UiModeManager) getSystemService(Context.UI_MODE_SERVICE);
+        mTextView.setText(String.format("System night mode (6.0+): %d\nSupport library night mode: %d\n\n%s %d\n%s %d\n%s %d\n%s %d",
+                uiManager.getNightMode(),
+                AppCompatDelegate.getDefaultNightMode(),
+                "MODE_NIGHT_AUTO", DayNightMode.MODE_NIGHT_AUTO,
+                "MODE_NIGHT_NO", DayNightMode.MODE_NIGHT_NO,
+                "MODE_NIGHT_YES", DayNightMode.MODE_NIGHT_YES,
+                "MODE_NIGHT_FOLLOW_SYSTEM", DayNightMode.MODE_NIGHT_FOLLOW_SYSTEM
+        ));
     }
 
     /*@Override

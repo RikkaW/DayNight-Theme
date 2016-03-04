@@ -18,6 +18,7 @@ public class MyApplication extends Application {
     public void onCreate() {
         super.onCreate();
 
-        //DayNightMode.setDefaultNightMode(this, DayNightMode.MODE_NIGHT_AUTO);
+        DayNightMode.setDefaultNightMode(DayNightMode.MODE_NIGHT_AUTO);
+        DayNightMode.setSystemNightMode(this, DayNightMode.MODE_NIGHT_NO);
     }
 }
