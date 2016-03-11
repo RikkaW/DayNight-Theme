@@ -19,12 +19,13 @@ public class DayNightMode {
     static public void setDefaultNightMode(Context context, int mode) {
         if (mode == MODE_NIGHT_AUTO_FOLLOW_SYSTEM_IF_SYSTEM_AUTO &&
                 ((UiModeManager) context.getSystemService(Context.UI_MODE_SERVICE)).getNightMode() == UiModeManager.MODE_NIGHT_AUTO) {
-            AppCompatDelegate.setDefaultNightMode(
-                    AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
+            mode = AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM;
         } else {
-            AppCompatDelegate.setDefaultNightMode(
-                    mode);
+            mode = AppCompatDelegate.MODE_NIGHT_AUTO;
         }
+
+        AppCompatDelegate.setDefaultNightMode(
+                mode);
     }
 
     static public void setSystemNightMode(Context context, int mode) {
