@@ -7,7 +7,7 @@ However right now (March 2), it is not work on Marshmallow, so there is a tempor
 Add it in your root build.gradle at the end of repositories:<br/>
 `maven { url "https://jitpack.io" }`<br/>
 Add the dependency<br/>
-`compile 'com.github.RikkaW:DayNight-Theme:v1.0.5'`
+`compile 'com.github.RikkaW:DayNight-Theme:v1.0.6'`
 
 Use `BaseDayNightModeActivity.setNightMode()` to change night mode runtime (it will recreate activity)<br/>
 Use `DayNightMode.setDefaultNightMode` in `application` class to set default night mode<br/>
@@ -19,4 +19,4 @@ If not, see [`BaseDayNightModeActivity`](https://github.com/RikkaW/DayNight-Them
 On Marshmallow, if you use `DayNightMode.setSystemNightMode` to change system setting, any app which contains `-night` resource will be affected.
 
 ###Sample app:
-[Download](https://github.com/RikkaW/DayNight-Theme/releases/download/v1.0.5/app-release.apk)
+[Download](https://github.com/RikkaW/DayNight-Theme/releases/download/v1.0.6/app-release.apk)
