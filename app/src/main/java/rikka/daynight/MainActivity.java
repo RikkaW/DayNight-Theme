@@ -69,9 +69,9 @@ public class MainActivity extends BaseDayNightModeActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, MainActivity.class);
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_DOCUMENT | Intent.FLAG_ACTIVITY_NEW_TASK);
-                    MainActivity.this.startActivity(intent, ActivityOptions.makeTaskLaunchBehind()
-                            .toBundle());
+                    intent.addFlags(/*Intent.FLAG_ACTIVITY_NEW_DOCUMENT | */Intent.FLAG_ACTIVITY_NEW_TASK);
+                    MainActivity.this.startActivity(intent/*, ActivityOptions.makeTaskLaunchBehind()
+                            .toBundle()*/);
                 } else {
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     MainActivity.this.startActivity(intent);
