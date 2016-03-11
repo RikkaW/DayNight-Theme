@@ -1,5 +1,7 @@
 package moe.xing.daynightmode;
 
+import android.app.UiModeManager;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -15,6 +17,11 @@ public class BaseDayNightModeActivity extends AppCompatActivity {
     private Intent mIntent;
 
     public void setNightMode(int mode) {
+        if (mode == DayNightMode.MODE_NIGHT_AUTO_FOLLOW_SYSTEM_IF_SYSTEM_AUTO &&
+                ((UiModeManager) getSystemService(Context.UI_MODE_SERVICE)).getNightMode() == UiModeManager.MODE_NIGHT_AUTO) {
+            mode = AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM;
+        }
+
         if (mode == mCurrentNightMode) {
             return;
         }
