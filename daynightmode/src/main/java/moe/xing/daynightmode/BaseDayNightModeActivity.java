@@ -63,13 +63,13 @@ public class BaseDayNightModeActivity extends AppCompatActivity {
         super.onBackPressed();
 
         if (shouldOverrideBackTransition()) {
-            overridePendingTransition(R.anim.activity_open_exit,
+            overridePendingTransition(0,
                     R.anim.activity_close_exit);
         }
     }
 
     public boolean shouldOverrideBackTransition() {
-        return false;
+        return true;
     }
 
     @Override
