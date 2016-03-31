@@ -3,6 +3,8 @@ package moe.xing.daynightmode;
 import android.app.UiModeManager;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -79,6 +81,13 @@ public class BaseDayNightModeActivity extends AppCompatActivity {
         // If night mode changed start a new activity
         if (mCurrentNightMode != AppCompatDelegate.getDefaultNightMode()) {
             fakeRecreate();
+            return;
+        }
+
+        if (mCurrentNightMode == DayNightMode.MODE_NIGHT_AUTO) {
+            if (getDelegate().applyDayNight()) {
+                fakeRecreate();
+            }
         }
     }
 
